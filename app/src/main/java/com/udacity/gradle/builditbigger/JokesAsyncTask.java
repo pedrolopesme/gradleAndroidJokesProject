@@ -1,6 +1,7 @@
 package com.udacity.gradle.builditbigger;
 
 import android.annotation.SuppressLint;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -50,13 +51,17 @@ public class JokesAsyncTask extends AsyncTask<Context, Void, String> {
 
     @Override
     protected void onPostExecute(String result) {
-        if (context != null) {
-            Log.d(this.getClass().getSimpleName(), "Opening JokeActivity");
+        try {
+            if (context != null) {
+                Log.d(this.getClass().getSimpleName(), "Opening JokeActivity");
 
-            final Intent intent = new Intent(context, JokeActivity.class);
-            intent.putExtra(JokeActivity.JOKE_INTENT_EXTRA, result);
+                final Intent intent = new Intent(context, JokeActivity.class);
+                intent.putExtra(JokeActivity.JOKE_INTENT_EXTRA, result);
 
-            context.startActivity(intent);
+                context.startActivity(intent);
+            }
+        } catch (ActivityNotFoundException e) {
+            Log.e(this.getClass().getSimpleName(), "It was impossible to open jokesActivity", e);
         }
     }
 
