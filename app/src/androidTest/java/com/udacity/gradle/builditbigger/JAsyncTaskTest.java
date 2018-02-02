@@ -18,6 +18,6 @@ public class JAsyncTaskTest extends AndroidTestCase {
         JokesAsyncTask jokeTask = new JokesAsyncTask();
         jokeTask.execute(InstrumentationRegistry.getContext());
         String joke = jokeTask.get(5, TimeUnit.SECONDS);
-        assert !TextUtils.isEmpty(joke);
+        assertTrue(!TextUtils.isEmpty(joke));
     }
 }
