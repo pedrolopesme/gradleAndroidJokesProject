@@ -57,6 +57,7 @@ public class JokesAsyncTask extends AsyncTask<Context, Void, String> {
 
                 final Intent intent = new Intent(context, JokeActivity.class);
                 intent.putExtra(JokeActivity.JOKE_INTENT_EXTRA, result);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
                 context.startActivity(intent);
             }
